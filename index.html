@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>DigitaHinos Game</title>
+<title>DH Trompete Game</title>
 <meta name="theme-color" content="#0b0906">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -93,13 +93,14 @@ h1{margin:6px 0 4px;font-size:2rem;letter-spacing:.5px;background:linear-gradien
 #hw{flex:1;position:relative;min-height:0}
 canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #cdn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5.5rem;font-weight:900;color:var(--gold2);text-shadow:0 0 30px #e8c14f;pointer-events:none}
-#openPad{flex:0 0 auto;margin:0 10px;height:44px;border-radius:12px;border:1px solid var(--gold3);background:linear-gradient(#3a2d0e,#201806);color:var(--gold2);font-weight:800;letter-spacing:2px;font-size:.95rem}
-#openPad.down{background:linear-gradient(#f2cf64,#c0922a);color:#2a1d02}
 #valves{flex:0 0 auto;display:flex;justify-content:space-around;align-items:flex-end;padding:10px 6px calc(10px + env(safe-area-inset-bottom));height:clamp(120px,25dvh,200px)}
 .vcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
-.pv{width:min(27vw,130px);height:min(27vw,130px);max-height:calc(100% - 26px);aspect-ratio:1;border-radius:50%;border:3px solid #f3d26a;position:relative;background:radial-gradient(circle at 35% 30%,#fff6c2,#e6bd4a 45%,#a8791a 85%);box-shadow:0 8px 0 #6d4c0c,0 14px 22px #000a,inset 0 -6px 10px #0005;transition:transform .03s;touch-action:none}
-.pv::after{content:"";position:absolute;inset:26%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#a9b8d0 50%,#56657f);box-shadow:inset 0 0 8px #0006}
-.pv.down{transform:translateY(8px);box-shadow:0 0 0 #6d4c0c,0 5px 10px #000a,inset 0 -6px 10px #0005,0 0 30px #ffe17a;filter:brightness(1.18)}
+.pv{width:min(27vw,130px);height:min(27vw,130px);max-height:calc(100% - 30px);aspect-ratio:1;border-radius:50%;border:0;padding:0;position:relative;touch-action:none;
+ background:repeating-conic-gradient(from 0deg,#f6da7a 0 3deg,#8d6512 3deg 6deg);
+ box-shadow:0 7px 0 #7a5410,0 12px 0 #3d2a06,0 20px 24px #000c,inset 0 2px 3px #fff9;transition:transform .03s}
+.pv::before{content:"";position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle at 36% 28%,#fffbe0 0,#f0cd60 30%,#c0902a 68%,#7d5812 100%);box-shadow:inset 0 -6px 10px #0007,inset 0 3px 4px #fffa,0 0 0 2px #5b3f0b}
+.pv::after{content:"";position:absolute;inset:27%;border-radius:50%;background:radial-gradient(circle at 34% 26%,#fff 0,#dfe8f6 22%,#9eb0cc 58%,#4d5c78 100%);box-shadow:inset 0 -4px 7px #0006,0 3px 5px #0008,0 0 0 2px #8a6414}
+.pv.down{transform:translateY(8px);box-shadow:0 0 0 #7a5410,0 3px 0 #3d2a06,0 8px 12px #000b,0 0 34px #ffd84acc,inset 0 2px 3px #fff9;filter:brightness(1.12)}
 .vcol b{color:var(--gold);font-size:1.25rem;line-height:1}
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#000d;border:1px solid var(--gold3);padding:10px 16px;border-radius:12px;font-size:.88rem;z-index:50;opacity:0;pointer-events:none;transition:opacity .25s;max-width:88vw;text-align:center}
 .toast.on{opacity:1}
@@ -114,8 +115,8 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 <!-- HOME -->
 <div id="sHome" class="screen bg on">
   <div class="logo"><i></i><i></i><i></i></div>
-  <h1>DigitaHinos Game</h1>
-  <p class="sub">Toque os pistos do trompete na hora certa e ouça o hino acontecer.</p>
+  <h1>DH Trompete Game</h1>
+  <p class="sub">Posicione os dedos nos pistos na hora certa, como no trompete de verdade, e ouça o hino acontecer.</p>
   <button class="big" id="bPlay">▶ Escolher hino</button>
   <button class="big alt" id="bLast" style="display:none"></button>
   <button class="big alt" id="bSet">⚙ Configurações</button>
@@ -146,7 +147,6 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   <div class="prog"><i id="gProg"></i></div>
   <div id="staffWrap"><canvas id="cStaff"></canvas></div>
   <div id="hw"><canvas id="cHw"></canvas><div id="cdn"></div></div>
-  <button id="openPad">ABERTO · sem pistos</button>
   <div id="valves">
     <div class="vcol"><button class="pv" data-v="1" aria-label="Pisto 1"></button><b>1</b></div>
     <div class="vcol"><button class="pv" data-v="2" aria-label="Pisto 2"></button><b>2</b></div>
@@ -195,11 +195,13 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
   <div class="panel">
     <h2>Como jogar</h2>
     <ol class="howt">
-      <li>As <b>notas descem</b> pela tela. Cada nota mostra quais <b>pistos</b> apertar (1, 2, 3 ou combinações).</li>
-      <li>Quando a nota chegar na <b>linha dourada</b>, aperte os pistos certos. Nota <b>larga</b> (as três colunas) = <b>aberto</b>: toque na barra <b>ABERTO</b>.</li>
+      <li>As <b>notas descem</b> pela tela. Cada nota mostra quais <b>pistos</b> manter apertados (1, 2, 3 ou combinações).</li>
+      <li>Quando a nota chegar na <b>linha dourada</b>, seus dedos precisam estar na <b>posição</b> dela. Não precisa bater: o jogo reconhece a posição.</li>
+      <li>Nota <b>larga SOLTA</b> (três colunas) = nenhum pisto: <b>tire os dedos da tela</b>.</li>
+      <li><b>Nota repetida?</b> Continue segurando os pistos, como no instrumento: o novo sopro é reconhecido sozinho.</li>
       <li>Ao acertar, a nota <b>toca</b>. As outras vozes tocam sozinhas ao fundo.</li>
       <li>Escolha a voz (soprano, contralto, tenor ou baixo). Tenor e baixo sobem uma oitava para caber no trompete.</li>
-      <li>No teclado: <b>J K L</b> (ou 1 2 3) = pistos, <b>Espaço</b> = aberto.</li>
+      <li>No teclado: <b>J K L</b> (ou 1 2 3) = pistos.</li>
     </ol>
     <div class="row"><button class="big" id="hClose">Entendi</button></div>
   </div>
@@ -654,7 +656,7 @@ function drawReady(){
         b.onclick=()=>{CUR.vid=v.id;drawReady();};box.appendChild(b);});
     $('rSpd').value=Math.round(CUR.spd*100);$('rSpdV').textContent=Math.round(CUR.spd*100)+'%';
     const m=$('rMode');m.innerHTML='';
-    [['normal','Normal'],['facil','Fácil (só o tempo)']].forEach(([k,l])=>{const b=document.createElement('button');b.textContent=l;b.className=CUR.mode===k?'on':'';b.onclick=()=>{CUR.mode=k;drawReady();};m.appendChild(b);});
+    [['normal','Normal (digitação)'],['facil','Fácil (só o tempo)']].forEach(([k,l])=>{const b=document.createElement('button');b.textContent=l;b.className=CUR.mode===k?'on':'';b.onclick=()=>{CUR.mode=k;drawReady();};m.appendChild(b);});
 }
 $('rSpd').oninput=e=>{CUR.spd=e.target.value/100;$('rSpdV').textContent=e.target.value+'%';};
 $('rCancel').onclick=()=>$('mReady').classList.remove('on');
@@ -681,12 +683,12 @@ function launch(){
     const sc=CUR.sc,chart=buildChart(sc,CUR.vid,CUR.spd);
     if(!chart.length){toast('Esta voz não tem notas neste hino.');G={state:'idle'};back();return;}
     const vname=(CUR.vs.find(v=>v.id===CUR.vid)||{}).name||'';
-    G={state:'play',chart,back:buildBacking(sc,CUR.vid,CUR.spd),bi:0,a0:0,held:0,strike:null,
+    G={state:'play',chart,back:buildBacking(sc,CUR.vid,CUR.spd),bi:0,a0:0,held:0,
        score:0,combo:0,maxCombo:0,hits:0,perfect:0,misses:0,total:chart.length,fx:[],pops:[],
        end:Math.max(...chart.map(n=>n.t+n.d))+.9,vname,bpm:(sc.bpm||100)*CUR.spd,key:sc.key||0,lane:[0,0,0],cdEnd:0};
     $('gTitle').textContent=String(CUR.h.n).padStart(3,'0')+' · '+CUR.h.t;
     $('gSub').textContent=vname+' · '+Math.round(CUR.spd*100)+'%'+(CUR.mode==='facil'?' · fácil':'');
-    document.querySelectorAll('.pv,#openPad').forEach(b=>b.classList.remove('down'));
+    document.querySelectorAll('.pv').forEach(b=>b.classList.remove('down'));
     updateHud();
     beginRun(-PRE);
     try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(w=>{wake=w;}).catch(()=>{});}catch(e){}
@@ -714,8 +716,8 @@ function pauseGame(){
     if(!G||G.state!=='play')return;
     G.state='pause';G.pausedAt=tNow();
     clearInterval(pumpId);cancelAnimationFrame(rafId);releaseAudio();
-    G.held=0;G.strike=null;clearTimeout(G.stTimer);G.lane=[0,0,0];
-    document.querySelectorAll('.pv,#openPad').forEach(b=>b.classList.remove('down'));
+    G.held=0;G.lane=[0,0,0];
+    document.querySelectorAll('.pv').forEach(b=>b.classList.remove('down'));
     $('mPause').classList.add('on');
 }
 function resumeGame(){
@@ -724,7 +726,7 @@ function resumeGame(){
 }
 function stopGame(){
     clearInterval(pumpId);cancelAnimationFrame(rafId);
-    if(G){clearTimeout(G.stTimer);G.strike=null;}
+    if(G){G.held=0;}
     releaseAudio();
     if(G&&G.state!=='idle')G.state='idle';
     try{wake&&wake.release();}catch(e){} wake=null;
@@ -737,40 +739,38 @@ $('pQuit').onclick=()=>{stopGame();closeModals();go('sHinos');};
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&G&&G.state==='play')pauseGame();});
 
 /* ---------- entrada: pistos ---------- */
+// Como no instrumento real: o que vale é a POSIÇÃO dos dedos na hora da nota.
+// Nota solta = nenhum dedo na tela. Nota repetida = continue segurando os pistos.
 const HW=()=>WIN[S.win]||1;
 function haptic(ms){if(S.vibrate&&navigator.vibrate){try{navigator.vibrate(ms);}catch(e){}}}
-function ctlDown(c){   // c = 1,2,3 (pistos) ou 0 (aberto)
-    if(!G||G.state!=='play')return;
-    if(c)G.held|=1<<(c-1);
-    const el=c?document.querySelector('.pv[data-v="'+c+'"]'):$('openPad'); el&&el.classList.add('down');
-    if(c)G.lane[c-1]=1;
-    const wait=CUR.mode==='facil'?0:85;
-    if(!G.strike){G.strike={t:tNow(),mask:G.held,ext:false,open:!c};G.stTimer=setTimeout(evalStrike,wait);}
-    else{G.strike.mask|=G.held;if(!c)G.strike.open=true;}
+function ctlDown(c){
+    if(!G||G.state!=='play'||!c)return;
+    G.held|=1<<(c-1);G.lane[c-1]=1;
+    const el=document.querySelector('.pv[data-v="'+c+'"]');el&&el.classList.add('down');
+    if(CUR.mode==='facil')easyTap();
 }
 function ctlUp(c){
-    if(!G)return;
-    if(c)G.held&=~(1<<(c-1));
-    const el=c?document.querySelector('.pv[data-v="'+c+'"]'):$('openPad'); el&&el.classList.remove('down');
-    if(c)G.lane[c-1]=0;
+    if(!G||!c)return;
+    G.held&=~(1<<(c-1));G.lane[c-1]=0;
+    const el=document.querySelector('.pv[data-v="'+c+'"]');el&&el.classList.remove('down');
 }
-function evalStrike(){
-    const st=G&&G.strike; if(!st||G.state!=='play'){if(G)G.strike=null;return;}
+// modo fácil: qualquer toque perto da hora acerta a nota mais próxima
+function easyTap(){
+    const t=tNow(),maxW=.22*HW(),pw=.075*HW();
+    const cand=G.chart.filter(n=>n.st===0&&Math.abs(n.t-t)<=maxW);
+    if(!cand.length)return;
+    const p=cand.reduce((a,b)=>Math.abs(a.t-t)<=Math.abs(b.t-t)?a:b);
+    hitNote(p,Math.abs(p.t-t)<=pw);
+}
+// chamado a cada quadro: acerta a nota quando a posição dos dedos bate com a digitação dela
+function checkPosition(t){
     const maxW=.22*HW(),pw=.075*HW();
-    const cand=G.chart.filter(n=>n.st===0&&Math.abs(n.t-st.t)<=maxW);
-    if(!cand.length){G.strike=null;return;}   // toque fora de hora: ignora
-    let pick=null;
-    if(CUR.mode==='facil'){ pick=cand.reduce((a,b)=>Math.abs(a.t-st.t)<=Math.abs(b.t-st.t)?a:b); }
-    else{
-        const ex=cand.filter(n=>n.mask===st.mask);
-        if(ex.length)pick=ex.reduce((a,b)=>Math.abs(a.t-st.t)<=Math.abs(b.t-st.t)?a:b);
-        else if(!st.ext&&cand.some(n=>n.mask!==0&&(n.mask&st.mask)===st.mask&&n.mask!==st.mask)){ st.ext=true; st.mask|=G.held; G.stTimer=setTimeout(evalStrike,90); return; } // combinação ainda sendo montada
+    for(const n of G.chart){
+        if(n.t>t)break;                    // lista em ordem de tempo
+        if(n.st!==0||t>n.t+maxW)continue;
+        if(G.held===n.mask){hitNote(n,t-n.t<=pw);return;}   // uma nota por quadro
     }
-    G.strike=null;
-    if(!pick){ wrongPress(); return; }
-    hitNote(pick,Math.abs(pick.t-st.t)<=pw);
 }
-function wrongPress(){G.combo=0;G.pops.push({txt:'Digitação errada',c:'#ff9b6b',t:tNow()});haptic(40);updateHud();}
 function hitNote(n,perfect){
     n.st=1;n.perfect=perfect;G.hits++;if(perfect)G.perfect++;G.combo++;G.maxCombo=Math.max(G.maxCombo,G.combo);
     const mult=Math.min(4,1+Math.floor(G.combo/10));
@@ -784,7 +784,6 @@ function updateHud(){
     $('gScore').textContent=G.score.toLocaleString('pt-BR');
     const done=G.hits+G.misses;$('gAcc').textContent=(done?Math.round(100*G.hits/done):100)+'%'+(G.combo>=5?' · x'+G.combo:'');
 }
-// ponteiro nos botões
 function bindBtn(el,c){
     const dn=e=>{e.preventDefault();try{el.setPointerCapture(e.pointerId);}catch(_){ }ctlDown(c);};
     const up=e=>{e.preventDefault();ctlUp(c);};
@@ -792,18 +791,17 @@ function bindBtn(el,c){
     el.addEventListener('contextmenu',e=>e.preventDefault());
 }
 document.querySelectorAll('.pv').forEach(b=>bindBtn(b,+b.dataset.v));
-bindBtn($('openPad'),0);
-const KEYS={'a':1,'j':1,'1':1,'s':2,'k':2,'2':2,'d':3,'l':3,'3':3,' ':0};
-const kd=new Set();
+const KEYS={'a':1,'j':1,'1':1,'s':2,'k':2,'2':2,'d':3,'l':3,'3':3};
 window.addEventListener('keydown',e=>{ if(!$('sGame').classList.contains('on'))return; if(e.key==='Escape'){pauseGame();return;}
-    const k=e.key.toLowerCase(); if(!(k in KEYS)||e.repeat)return; e.preventDefault(); kd.add(k); ctlDown(KEYS[k]); });
-window.addEventListener('keyup',e=>{const k=e.key.toLowerCase(); if(!(k in KEYS))return; kd.delete(k); ctlUp(KEYS[k]); });
+    const k=e.key.toLowerCase(); if(!(k in KEYS)||e.repeat)return; e.preventDefault(); ctlDown(KEYS[k]); });
+window.addEventListener('keyup',e=>{const k=e.key.toLowerCase(); if(!(k in KEYS))return; ctlUp(KEYS[k]); });
 
 /* ---------- desenho ---------- */
 function frame(){
     if(!G||G.state!=='play')return;
     const t=tNow();
     // erros por nota que passou
+    checkPosition(t);
     const maxW=.22*HW();
     G.chart.forEach(n=>{ if(n.st===0&&t>n.t+maxW){n.st=2;G.misses++;G.combo=0;G.pops.push({txt:'Errou',c:'#ff6b6b',t});updateHud();} });
     drawHighway(t);drawStaff(t);
@@ -856,32 +854,43 @@ function drawHighway(t){
 function drawNoteBlock(c,n,dB,dH,dT,bw,cxm,sc,yy,xl,t){
     const yB=yy(dB),yH=yy(dH),yT=yy(dT),sB=sc(Math.min(dB,1.1)),sH=sc(Math.max(dH,0)),sT=sc(Math.max(dT,0));
     const hw=bw*.5*.86,open=n.mask===0,lanes=open?[1]:[0,1,2].filter(i=>n.mask&(1<<i));
-    let fillA,fillB,edge,txt='#3a2802',alpha=1;
-    if(n.st===1){fillA='#ffffff';fillB='#7df0d0';edge='#ffffff';alpha=Math.max(.12,1-(t-n.t)/.3);}
-    else if(n.st===2){fillA='#6b5a52';fillB='#3a302c';edge='#5c4a44';txt='#a39088';alpha=.65;}
-    else{fillA='#fff2b0';fillB='#cf9b2c';edge='#fff6cf';}
+    let fillA,fillB,edge,front,txt='#3a2802',alpha=1;
+    if(n.st===1){fillA='#ffffff';fillB='#7df0d0';edge='#ffffff';front='#4fb89c';alpha=Math.max(.12,1-(t-n.t)/.3);}
+    else if(n.st===2){fillA='#6b5a52';fillB='#3a302c';edge='#5c4a44';front='#231d1a';txt='#a39088';alpha=.65;}
+    else{fillA='#fff2b0';fillB='#d9a62f';edge='#fff6cf';front='#8a6212';}
     c.globalAlpha=alpha;
-    const poly=(xT,xB,wT,wB,yt,yb,grad)=>{
+    const path=(xT,xB,wT,wB,yt,yb)=>{c.beginPath();c.moveTo(xT-wT,yt);c.lineTo(xT+wT,yt);c.lineTo(xB+wB,yb);c.lineTo(xB-wB,yb);c.closePath();};
+    // cauda fina (nota longa)
+    const tail=(xT,xB,wT,wB,yt,yb)=>{const g=c.createLinearGradient(xB-wB,0,xB+wB,0);g.addColorStop(0,fillB);g.addColorStop(.5,fillA);g.addColorStop(1,fillB);c.fillStyle=g;path(xT,xB,wT,wB,yt,yb);c.fill();};
+    // bloco 3D: sombra, face da frente, face de cima com brilho e quinas
+    const block=(xT,xB,wT,wB,yt,yb)=>{
+        const th=Math.max(3*dpr,13*sB*dpr);
+        if(n.st===0){c.shadowColor='rgba(0,0,0,.65)';c.shadowBlur=12*dpr*sB;c.shadowOffsetY=7*dpr*sB;}
+        c.fillStyle=front;c.beginPath();c.moveTo(xB-wB,yb);c.lineTo(xB+wB,yb);c.lineTo(xB+wB,yb+th);c.lineTo(xB-wB,yb+th);c.closePath();c.fill();
+        c.shadowColor='transparent';c.shadowBlur=0;c.shadowOffsetY=0;
         const g=c.createLinearGradient(0,yt,0,yb);g.addColorStop(0,fillB);g.addColorStop(1,fillA);
-        c.fillStyle=grad?g:fillB;c.strokeStyle=edge;c.lineWidth=1.5*dpr;
-        c.beginPath();c.moveTo(xT-wT,yt);c.lineTo(xT+wT,yt);c.lineTo(xB+wB,yb);c.lineTo(xB-wB,yb);c.closePath();c.fill();if(grad)c.stroke();
+        c.fillStyle=g;path(xT,xB,wT,wB,yt,yb);c.fill();
+        const gl=c.createLinearGradient(0,yt,0,yb);gl.addColorStop(0,'rgba(255,255,255,.6)');gl.addColorStop(.4,'rgba(255,255,255,.12)');gl.addColorStop(1,'rgba(255,255,255,0)');
+        c.fillStyle=gl;path(xT,xB,wT,wB,yt,yb);c.fill();
+        c.strokeStyle=edge;c.lineWidth=1.5*dpr;path(xT,xB,wT,wB,yt,yb);c.stroke();
+        c.strokeStyle='rgba(60,38,0,.45)';c.lineWidth=2*dpr*sB;c.beginPath();c.moveTo(xB-wB,yb+th);c.lineTo(xB+wB,yb+th);c.stroke();   // borda inferior escura
     };
-    const label=noteName(n.m),fs=Math.max(9,16*sB*dpr);
+    const label=n.st===0||n.st===2?noteName(n.m):noteName(n.m),fs=Math.max(9,16*sB*dpr);
     const dd=Math.min(dB,1.1),dh=Math.max(dH,0);
-    // cauda (nota longa)
-    if(dT<dH-.01){c.globalAlpha=alpha*.55;
-        if(open)poly(cxm,cxm,bw*.18*sT,bw*.18*sH,yT,yH,false);
-        else lanes.forEach(i=>poly(xl(i,Math.max(dT,0)),xl(i,dh),bw*.09*sT,bw*.09*sH,yT,yH,false));
+    if(dT<dH-.01){c.globalAlpha=alpha*.7;
+        if(open)tail(cxm,cxm,bw*.14*sT,bw*.14*sH,yT,yH);
+        else lanes.forEach(i=>tail(xl(i,Math.max(dT,0)),xl(i,dh),bw*.08*sT,bw*.08*sH,yT,yH));
         c.globalAlpha=alpha;}
-    // cabeça
-    if(open){ poly(cxm,cxm,1.5*bw*.97*sH,1.5*bw*.97*sB,yH,yB,true); }
+    if(open){ block(cxm,cxm,1.5*bw*.97*sH,1.5*bw*.97*sB,yH,yB); }
     else{
-        lanes.forEach(i=>poly(xl(i,dh),xl(i,dd),hw*sH,hw*sB,yH,yB,true));
-        if(lanes.length>1){const xa=xl(lanes[0],dd),xb=xl(lanes[lanes.length-1],dd);c.strokeStyle=edge;c.lineWidth=5*dpr*sB;c.lineCap='round';c.beginPath();c.moveTo(xa,yB-4*dpr);c.lineTo(xb,yB-4*dpr);c.stroke();c.lineCap='butt';}
+        lanes.forEach(i=>block(xl(i,dh),xl(i,dd),hw*sH,hw*sB,yH,yB));
+        if(lanes.length>1){const xa=xl(lanes[0],dd),xb=xl(lanes[lanes.length-1],dd),yl=yB-5*dpr*sB;
+            c.strokeStyle=front;c.lineWidth=7*dpr*sB;c.lineCap='round';c.beginPath();c.moveTo(xa,yl);c.lineTo(xb,yl);c.stroke();
+            c.strokeStyle=edge;c.lineWidth=3.5*dpr*sB;c.beginPath();c.moveTo(xa,yl-1.5*dpr);c.lineTo(xb,yl-1.5*dpr);c.stroke();c.lineCap='butt';}
     }
     c.fillStyle=txt;c.font='800 '+fs+'px system-ui';c.textAlign='center';c.textBaseline='middle';
     const ty=(yB+yH)/2;
-    if(open)c.fillText(label+' · ABERTO',cxm,ty);else lanes.forEach(i=>c.fillText(label,xl(i,dd),ty));
+    if(open)c.fillText(label+' · SOLTA',cxm,ty);else lanes.forEach(i=>c.fillText(label,xl(i,dd),ty));
     c.globalAlpha=1;c.textBaseline='alphabetic';
 }
 /* partitura em clave de Sol (nota escrita do trompete) */
@@ -948,7 +957,7 @@ function renderSettings(){
     seg('Voz padrão','Tenor e baixo são tocados uma oitava acima e ajustados ao alcance do trompete.','voice',[[0,'Soprano'],[1,'Contralto'],[2,'Tenor'],[3,'Baixo']]);
     seg('Trompete em','Si♭: a nota escrita é um tom acima do som. Dó: escrita = som.','key',[['sib','Si♭'],['do','Dó']],v=>trumpetSetKey(v));
     rng('Velocidade do hino','Mais lento ajuda a aprender.','speed',40,120,5,v=>v+'%');
-    seg('Modo de jogo','Normal: precisa apertar os pistos certos. Fácil: basta tocar no tempo.','mode',[['normal','Normal'],['facil','Fácil']]);
+    seg('Modo de jogo','Normal: mantenha os pistos certos na hora da nota (como no instrumento). Fácil: basta tocar no tempo.','mode',[['normal','Normal'],['facil','Fácil']]);
     seg('Velocidade da queda das notas',null,'fall',[['lenta','Lenta'],['normal','Normal'],['rapida','Rápida']]);
     seg('Tolerância de tempo',null,'win',[['estreita','Estreita'],['normal','Normal'],['larga','Larga']]);
     seg('Nome das notas',null,'names',[['solfa','Dó Ré Mi'],['cifra','C D E']]);
