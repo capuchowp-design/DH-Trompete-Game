@@ -1,15 +1,18 @@
-# DigitaHinos Game (Trompete)
+# DH Trompete Game
 
 Game estilo Guitar Hero para aprender os hinos no trompete.
 
 - **Telas:** início, escolha do hino (busca por número/título, com estrelas), configurações e o game.
-- **Jogo:** as notas descem em 3 colunas (pistos 1, 2 e 3). Nota que usa dois ou três pistos aparece em várias colunas ligadas; nota larga ("ABERTO") = nenhum pisto, toque na barra ABERTO. Ao acertar, a nota toca (som de trompete).
-- **Vozes:** soprano, contralto, tenor ou baixo. Tenor e baixo sobem 1 oitava e depois são encaixados no alcance do trompete (mesma regra do DigitaHinos Trompete). As outras vozes tocam sozinhas como acompanhamento (pode desligar).
-- **Trompete:** Si♭ (padrão) ou Dó; a digitação usa a mesma tabela do app DigitaHinos Trompete.
-- **Modos:** Normal (precisa da digitação certa) e Fácil (basta tocar no tempo). Velocidade do hino de 40% a 120%, tolerância de tempo, velocidade da queda, nomes das notas (Dó Ré Mi ou C D E), ajuste de atraso do som.
-- **Teclado (computador):** J K L (ou 1 2 3) = pistos, Espaço = aberto, Esc = pausa.
+- **Jogo (simulação do instrumento):** as notas descem em 3 colunas (pistos 1, 2 e 3). Na hora da nota, seus dedos precisam estar na **posição** dela. Não é preciso bater: o jogo reconhece a posição.
+  - **Nota solta** (barra larga "SOLTA") = nenhum pisto: tire os dedos da tela.
+  - **Nota repetida:** continue segurando o(s) pisto(s); o novo "sopro" é reconhecido sozinho.
+  - Ao acertar, a nota toca (som de trompete).
+- **Vozes:** soprano, contralto, tenor ou baixo. Tenor e baixo sobem 1 oitava e depois são encaixados no alcance do trompete. As outras vozes tocam sozinhas como acompanhamento (pode desligar).
+- **Trompete:** Si♭ (padrão) ou Dó; a digitação usa a tabela do app DigitaHinos Trompete.
+- **Modos:** Normal (digitação) e Fácil (basta tocar no tempo). Velocidade do hino de 40% a 120%, tolerância de tempo, velocidade da queda, nomes das notas, ajuste de atraso do som.
+- **Teclado (computador):** J K L (ou 1 2 3) = pistos, Esc = pausa.
 
 ## Publicar
 Suba tudo no GitHub Pages. A cada versão nova, mude `CACHE_NAME` em `sw.js`.
-Para o APK: Actions → "Gerar APK" (mesmo fluxo dos outros apps; usa os mesmos *secrets* de assinatura).
+Para o APK: Actions → "Gerar APK" (usa os mesmos *secrets* de assinatura dos outros apps).
 Os hinos ficam em `hinos/` (arquivos .mxl + `index.json`).

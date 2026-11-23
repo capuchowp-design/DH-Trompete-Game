@@ -1,7 +1,7 @@
 {
-  "name": "DigitaHinos Game - Trompete",
-  "short_name": "DigitaHinos Game",
-  "description": "Game de trompete estilo Guitar Hero para aprender os hinos: toque os pistos na hora certa.",
+  "name": "DH Trompete Game",
+  "short_name": "DH Trompete Game",
+  "description": "Game de trompete estilo Guitar Hero para aprender os hinos: posicione os dedos nos pistos na hora certa.",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "any",
