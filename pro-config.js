@@ -3,7 +3,7 @@ window.PRO_CFG = {
   modo: 'pix',                                  // 'pix' = site (PWA) e APK | 'play' = versão da Google Play (o workflow define sozinho)
   produtoId: 'pro_desbloqueio',                 // ID do produto criado na Play Console (só vale no modo 'play')
   app: 'trumpet',                               // nome do app (aparece na planilha; o código Pro só vale para este app)
-  scriptUrl: 'https://script.google.com/macros/s/AKfycbwx_CEnVMpRdDSI1mkXNNoLwQLf0X_0gCHZRuWYfosaGGJUz3bxhFyc-zOviWb64sVH/exec',       // URL do Apps Script da planilha (termina em /exec) — veja planilha-pro/COMO-CONFIGURAR.md
+  scriptUrl: 'COLE_AQUI_A_URL_DO_SCRIPT',       // URL do Apps Script da planilha (termina em /exec) — veja planilha-pro/COMO-CONFIGURAR.md
   pixKey: 'meuidwp@duck.com',                   // chave Pix (e-mail)
   pixName: 'WESLEY PHILIP A CAPUCHO',           // nome do recebedor (até 25 letras, sem acento)
   pixCity: 'SAO SEBASTIAO',                     // cidade (até 15 letras, sem acento)
